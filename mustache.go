@@ -523,6 +523,16 @@ Outer:
 					return ret, nil
 				}
 				continue Outer
+			case reflect.Slice:
+				index, err := strconv.Atoi(name)
+				if err != nil {
+					return v, err
+				}
+				ret := av.Index(index)
+				if ret.IsValid() {
+					return ret, nil
+				}
+				continue Outer
 			default:
 				continue Outer
 			}
